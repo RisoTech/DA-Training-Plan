@@ -34,10 +34,12 @@ urlpatterns = [
         subject_template_name='password_reset_subject.txt'
     ),
     name='password_reset'),
+    path('boards/<pk>/topics/<topic_pk>/',views.topic_posts, name='topic_posts'),
+    path('boards/<pk>/topics/<topic_pk>/reply/',views.reply_topic, name='reply_topic'),
     path('reset/done/',
     auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),
     name='password_reset_done'),
-    path('reset/(<uidb64>/<token>/',
+    path('reset/<uidb64>/<token>/',
     auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'),
     name='password_reset_confirm'),
     path('reset/complete/',
