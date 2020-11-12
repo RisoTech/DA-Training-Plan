@@ -2,7 +2,7 @@ from django.http import response
 from django.urls import reverse
 from django.urls import resolve
 from django.test import TestCase
-from ..views import home, board_topics, new_topic
+from ..views import BoardListView, new_topic
 from ..models import *
 from django.contrib.auth.models import User
 from ..forms import NewTopicForm
@@ -16,7 +16,7 @@ class HomeTests(TestCase):
         self.assertEquals(self.response.status_code, 200)
     def test_home_url_resolve_home_view(self):
         view = resolve('/boards/')
-        self.assertEquals(view.func, home)
+        self.assertEquals(view.func.view_class, BoardListView)
     def test_home_view_contains_link_to_topics_page(self):
         board_topics_url = reverse('board_topics', kwargs={'pk':self.board.pk})
         self.assertContains(self.response, 'href="{0}"'.format(board_topics_url))

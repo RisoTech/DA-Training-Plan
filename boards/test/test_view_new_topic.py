@@ -2,7 +2,7 @@ from django.http import response
 from django.urls import reverse
 from django.urls import resolve
 from django.test import TestCase
-from ..views import home, board_topics, new_topic
+from ..views import new_topic
 from ..models import *
 from django.contrib.auth.models import User
 from ..forms import NewTopicForm
